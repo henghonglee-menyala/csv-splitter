@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CSV Splitter</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 2rem;
+      max-width: 600px;
+    }
+    h1 {
+      color: #333;
+    }
+    form {
+      margin-bottom: 2rem;
+    }
+    label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+    select, input[type="text"], input[type="file"] {
+      width: 100%;
+      padding: 0.5rem;
+      margin-top: 0.25rem;
+      box-sizing: border-box;
+    }
+    input[type="submit"] {
+      margin-top: 1.5rem;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    .info {
+      background: #f9f9f9;
+      border-left: 4px solid #007BFF;
+      padding: 1rem;
+      margin-top: 2rem;
+      font-size: 0.9rem;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <h1>Ample CSV Splitter</h1>
+  <form method="POST" enctype="multipart/form-data">
+    <label for="file">Upload CSV file:</label>
+    <input type="file" id="file" name="file" required accept=".csv,.tsv,text/csv,text/tsv" />
+
+    <label for="split_method">Choose split method:</label>
+    <select id="split_method" name="split_method" onchange="toggleSplitValue()">
+      <option value="fixed">Fixed Amount</option>
+      <option value="equal" selected>Split Equally</option>
+      <option value="random">Split Randomly</option>
+    </select>
+
+    <div id="split_value_container">
+      <label for="split_value">Fixed Amount per Split (max 50,000):</label>
+      <input type="text" id="split_value" name="split_value" value="49000" />
+    </div>
+
+    <input type="submit" value="Split CSV" />
+  </form>
+
+  <div class="info">
+    <strong>Split Methods Explained:</strong>
+    <ul>
+      <li><strong>Fixed Amount:</strong> Breaks rows where "DestinationAmount" exceeds the fixed amount you specify (e.g. 49,000), splitting into multiple rows accordingly.</li>
+      <li><strong>Split Equally:</strong> Divides the amount into the minimum number of equal parts needed so that each part is < 50,000.</li>
+      <li><strong>Split Randomly:</strong> Divides the amount into random parts such that each part is < 50,000, each row is different, and the sum equals the original amount.</li>
+    </ul>
+  </div>
+
+  <script>
+    function toggleSplitValue() {
+      const method = document.getElementById('split_method').value;
+      const splitValueContainer = document.getElementById('split_value_container');
+      if (method === 'fixed') {
+        splitValueContainer.style.display = 'block';
+      } else {
+        splitValueContainer.style.display = 'none';
+      }
+    }
+    // Initialize on page load
+    toggleSplitValue();
+  </script>
+</body>
+</html>
