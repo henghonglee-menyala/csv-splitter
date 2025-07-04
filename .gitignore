@@ -1,0 +1,34 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+env/
+venv/
+ENV/
+.env/
+
+# Flask uploads
+uploads/
+
+# VS Code
+.vscode/
+
+# macOS metadata
+.DS_Store
+
+# Output CSVs
+*.csv
+
+# Logs
+*.log
+
+# Python egg
+*.egg-info/
+dist/
+build/
+
+# IDE-specific
+.idea/
+

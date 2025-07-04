@@ -13,7 +13,7 @@ from flask import (
 )
 
 app = Flask(__name__)
-UPLOAD_FOLDER = "uploads"
+UPLOAD_FOLDER = '/Users/xweave/csv-splitter/uploads'
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 THRESHOLD = 49999  # Max allowed amount per split
